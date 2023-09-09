@@ -1,20 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
-</head>
-<body>
- <form action="ProcesarFormulario.html">
+    <title>Ejemplo Diplomado Modulo Web</title>
+ </head>
+ <body>
+    <h2>
+        <font color="FF0000">Ejemplo Pagina con formulario </font>
+    </h2>
+    <hr color="green" size="2">
+    <form action="ProcesarFormulario.html">
         Ruc:
-        <input type="text" name="ruc" id="ruc" value="80004020" readonly="readonly">
-
-		Persona Juridica
-        <input type="checkbox" name="personaJuridica" id="personaJuridica" checked="checked">
-
-		Gran Contribuyente
-        <input type="checkbox" name="granContribuyente" id="granContribuyente" checked="checked">
+        <input type="text"  name="ruc" id="ruc" value="80004020" readonly="readonly"> <br> <br>
+        Razon Social:
+        <input type="text" name="razonsocial" id="razonsocial" size="50"
+        maxlength="80"> <br> <br>
+        Password:
+        <input type="password" name="pass" id="pass" size="20" maxlength="15"> <br>
+        <br>
+        <textarea name="comentarios" cols="20" rows="3">Comentarios...</textarea> <br>
+        Persona Juridica:
+        <input type="checkbox" name="personajuridica" id="personajuridica" checked="checked">
+        Gran Contribuyente:
+        <input type="checkbox" name="grancontribuyente" id="grancontribuyente" disabled="disabled"> <br>
+        <input type="submit" name="botonSubmit" value="Aceptar"/> 
+        <input type="submit" name="botonSubmit" id="Cancelar">
+        <input type="reset" value="Reset">
+        Sexo: <br>
+        <select name="sexo" id="sexo">
+        <option value="1">Informatica</option>
+        <option value="2">Contabilidad</option>
+        <option value="3">Agronomia</option>
+        </select>
+        <br>
+        <input type="radio" name="tipoIva" id="tipoIva" value="1">IVA 5% <br>
+        <input type="radio" name="tipoIva" id="tipoIva" value="2">IVA 10% <br>
+        
     </form>
-</body>
-</html>
+ </body>
+ </html>
