@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Monto Cuota </title>
+</head>
+<body>
+ <h2>
+    <font color="#000">Formulario de Monto Cuota</font>
+</h2>
+    <hr color="green" size="2">
+ <form action="ProcesarFormularioMontoCuota.html" method="post">
+
+ <label for="monto">Monto</label>
+ <input type="number" name="monto" id="monto" required> <br> <br>
+
+ <label for="fechaCreacion">Fecha de Creacion</label>
+ <input type="datetime-local" name="fechaCreacion" id="fechaCreacion" required> <br> <br>
+
+ <label for="fechaIniVigencia">Fecha Inicio de Vigencia</label>
+ <input type="datetime-local" name="fechaIniVigencia" id="fechaIniVigencia" required> <br> <br>
+
+ <label for="fechaFinVigencia">Fecha Fin de Vigencia</label>
+ <input type="datetime-local" name="fechaFinVigencia" id="fechaFinVigencia" required> <br> <br>
+
+ <label for="fechaInactivacion">Fecha de Inactivacion</label>
+ <input type="datetime-local" name="fechaInactivacion" id="fechaInactivacion"> <br> <br>
+
+ <label for="estado">Estado</label>
+ <select name="estado" id="estado" required>
+  <option value="1">Activo</option>
+  <option value="2">Inactivo</option>
+ </select>
+ <br> <br>
+
+ <label for="usuarioInactivacion">Usuario de Inactivacion</label>
+ <input type="text" name="usuarioInactivacion" id="usuarioInactivacion"> <br> <br>
+ 
+<input type="submit" value="Guardar">
+ </form>
+
+</body>
+</html>

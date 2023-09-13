@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Formulario de Movimentos Socios</title>
+</head>
+<body>
+    <h2>
+    <font color="#000">Formulario de Movimentos Socios </font>
+</h2>
+ <hr color="green" size="2">
+
+ <label for="fechaPago">Fecha de Pago</label>
+ <input type="datetime-local" name="fechaPago" id="fechaPago" required> <br> <br> 
+
+<label for="monto">Monto</label>
+<input type="number" name="monto" id="monto" required> <br> <br>
+
+<label for="concepto">Concepto</label>
+<input type="text" name="concepto" id="concepto" required> <br> <br>
+
+<label for="estado">Estado</label>
+ <select name="estado" id="estado">
+    <option value="1">Activo</option>
+    <option value="2">Inactivo</option>
+ </select>
+ <br> <br>
+
+ <label for="medioPago">Medio de Pago</label>
+ <input type="text" name="medioPago" id="medioPago" required> <br> <br>
+
+ <label for="socio">Socio</label>
+ <input type="text" name="socio" id="socio" required> <br> <br>
+
+ <label for="tipoMovimiento">Tipo de Movimiento</label>
+ <input type="text" name="tipoMovimiento" id="tipoMovimiento" required> <br> <br>
+
+ <label for="usuarioAprobacion">Usuario Aprobacion</label>
+ <input type="text" name="usuarioAprobacion" id="usuarioAprobacion"> <br> <br>
+
+ <label for="usuarioCreacion">Usuario Creacion</label>
+ <input type="text" name="usuarioCreacion" id="usuarioCreacion"> <br> <br>
+
+<input type="submit" value="Guardar">
+
+</body>
+</html>
