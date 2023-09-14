@@ -10,7 +10,7 @@
         <font color="#000">Formulario de Socios </font>
     </h2>
     <hr color="green" size="2">
-    <form action="ProcesarFormulario.html">
+    <form action="socio-servlet" method="POST">
      <label for="nombres">Nombres:</label>
      <input type="text" id="nombres" name="nombres" required> <br> <br>
 
@@ -30,9 +30,13 @@
     <input type="datetime-local" name="fechaIngreso" id="fechaIngreso" required> <br> <br>
 
     <label for="estadoActual">Estado</label>
-    <input type="text" name="estadoActual" id="estadoActual" required> <br> <br>
+    <select name="estadoActual" id="estadoActual"> <br> <br>
+        <option value="1">Activo</option>
+        <option value="2">Inactivo</option>
+      </select>
+    <br> <br>
 
-    <label for="fundador">¿Es fundador?</label>
+    <label for="fundador">Es fundador</label>
     <input type="checkbox" name="fundador" id="fundador"> <br> <br>
 
     <label for="usuarioCreacion">Usuario Creacion</label>
