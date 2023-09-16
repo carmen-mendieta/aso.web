@@ -12,8 +12,7 @@ import java.util.Objects;
 /**
  * Servlet implementation class SociosServlet
  */
-
-
+@WebServlet("/socio-servlet")
 public class SociosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,6 +49,42 @@ public class SociosServlet extends HttpServlet {
 		
 		if(Objects.nonNull(request.getParameter("email"))) {
 			pw.print("<br>Email: " +request.getParameter("email"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("nroSocio"))) {
+			pw.print("<br>Numero de Socio: " +request.getParameter("nroSocio"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("nroCedula"))) {
+			pw.print("<br>Numero de Cedula: " +request.getParameter("nroCedula"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("fechaIngreso"))) {
+			pw.print("<br>Fecha de Ingreso: " +request.getParameter("fechaIngreso"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("estadoActual"))) {
+			pw.print("<br>Estado: " +request.getParameter("estadoActual"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("fundador"))) {
+			pw.print("<br> Es fundador: " +request.getParameter("fundador"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("usuarioCreacion"))) {
+			pw.print("<br>Usuario Creacion: " +request.getParameter("usuarioCreacion"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("fechaCreacion"))) {
+			pw.print("<br>Fecha de Creacion: " +request.getParameter("fechaCreacion"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("socioProponente"))) {
+			pw.print("<br>Socio Proponente: " +request.getParameter("socioProponente"));
+		}
+		
+		if(Objects.nonNull(request.getParameter("tipoSocio"))) {
+			pw.print("<br>Tipo Socio: " +request.getParameter("tipoSocio"));
 		}
 				
 	}
