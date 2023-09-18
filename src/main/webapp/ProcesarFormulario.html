@@ -6,22 +6,20 @@
     <title>Formulario</title>
 </head>
 <body>
-    <form action="procesarformulario" method="post">
-        <input type="hidden" name="codigo" value="1" readonly="true">
+    <form action="procesar-formulario" method="POST">
         Producto:
         <input type="text" name="descripcion" maxlength="30" size="40">
         <br>
         Password
-        <input type="password" name="contraseña" maxlength="30" size="40">
+        <input type="password" name="contrasena" maxlength="30" size="40">
         <br>
         <textarea name="comentarios" cols="20" rows="3">Comentarios...
         </textarea>
         <br>
-        <input type="checkbox" name="activo" value="si" disabled="disabled">
-        Producto Activo <br>
-        <input type="checkbox" name="vencimiento" value="si" checked="checked">
-        Puede tener vencimiento <br>
-
+           <input type="checkbox" name="activo" value="si" disabled="disabled">
+         Producto Activo <br>
+          <input type="checkbox" name="vencimiento" value="si" checked="checked">
+          Puede tener vencimiento <br>
       Tipo:<br>
       <input type="radio" name="tipo" value="1"> Recurso <br>
       <input type="radio" name="tipo" value="2" checked> Item <br>
@@ -34,7 +32,7 @@
         <option value="3">Hora</option>
      </select> <br>
      <input type="reset" value="Reset">
-     <input type="submit" name="botonSubmit" value="Aceptar">
+     <input type="submit"  value="Aceptar">
      <input type="submit" name="botonSubmit" value="Cancelar">
     </form>
 </body>

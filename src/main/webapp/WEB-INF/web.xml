@@ -20,4 +20,15 @@
     <url-pattern>/SociosServlet</url-pattern>
     <url-pattern>/socio-servlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProcesarFormulario</display-name>
+    <servlet-name>ProcesarFormulario</servlet-name>
+    <servlet-class>py.edu.ucsa.aso.web.servlets.ProcesarFormulario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProcesarFormulario</servlet-name>
+    <url-pattern>/ProcesarFormulario</url-pattern>
+    <url-pattern>/procesar-formulario</url-pattern>
+  </servlet-mapping>
 </web-app>
