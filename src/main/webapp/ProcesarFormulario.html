@@ -6,34 +6,36 @@
     <title>Formulario</title>
 </head>
 <body>
-    <form action="procesar-formulario" method="POST">
-        Producto:
-        <input type="text" name="descripcion" maxlength="30" size="40">
-        <br>
-        Password
-        <input type="password" name="contrasena" maxlength="30" size="40">
-        <br>
-        <textarea name="comentarios" cols="20" rows="3">Comentarios...
-        </textarea>
-        <br>
-           <input type="checkbox" name="activo" value="si" disabled="disabled">
-         Producto Activo <br>
-          <input type="checkbox" name="vencimiento" value="si" checked="checked">
-          Puede tener vencimiento <br>
-      Tipo:<br>
-      <input type="radio" name="tipo" value="1"> Recurso <br>
-      <input type="radio" name="tipo" value="2" checked> Item <br>
-      <input type="radio" name="tipo" value="3">Servicio <br>
+<form action="procesar-formulario" method="POST">
 
-     Unidad de Medida: <br>
-     <select name="udm" multiple size="3">
-        <option value="1" selected>Unidad</option>
-        <option value="2">Gramo</option>
-        <option value="3">Hora</option>
-     </select> <br>
-     <input type="reset" value="Reset">
-     <input type="submit"  value="Aceptar">
-     <input type="submit" name="botonSubmit" value="Cancelar">
-    </form>
+<label for="descripcion">Producto</label>
+<input type="text" name="descripcion" id="descripcion" required> <br> <br>
+
+<label for="contrasena">Password</label>
+<input type="password" name="contrasena" id="contrasena" required> <br> <br>
+
+<textarea name="comentarios"  cols="20" rows="3">Comentarios</textarea> <br>
+
+<input type="checkbox" name="activo" id="activo" value="si" disabled>
+Producto Activo <br> <br> 
+
+<input type="checkbox" name="vencimiento" id="vencimiento" value="si" checked="checked">
+Puede tener vencimiento <br><br>
+
+Tipo: <br>
+<input type="radio" name="tipo" id="tipo" value="1">Recurso <br>
+<input type="radio" name="tipo" id="tipo" value="2">Item <br>
+<input type="radio" name="tipo" id="tipo" value="3">Servicio <br>
+
+Unidad de Medida: <br>
+<select name="udm" multiple size="3">
+    <option value="1" selected>Unidad</option>
+    <option value="2">Gramo</option>
+    <option value="3">Hora</option>
+</select> <br>
+<input type="reset" value="Reset">
+<input type="submit" value="Aceptar">
+<input type="submit" value="Cancelar">
+</form>
 </body>
 </html>
