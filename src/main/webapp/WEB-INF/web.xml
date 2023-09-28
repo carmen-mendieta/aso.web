@@ -9,5 +9,48 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>py.edu.ucsa.aso.web.servlets.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+    <url-pattern>/login-servlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VerUsuario</display-name>
+    <servlet-name>VerUsuario</servlet-name>
+    <servlet-class>py.edu.ucsa.aso.web.servlets.VerUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VerUsuario</servlet-name>
+    <url-pattern>/VerUsuario</url-pattern>
+    <url-pattern>/ver-usuario</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbarCookie</display-name>
+    <servlet-name>ProbarCookie</servlet-name>
+    <servlet-class>py.edu.ucsa.aso.web.servlets.ProbarCookie</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbarCookie</servlet-name>
+    <url-pattern>/ProbarCookie</url-pattern>
+    <url-pattern>/probar-cookie</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LeerCookie</display-name>
+    <servlet-name>LeerCookie</servlet-name>
+    <servlet-class>py.edu.ucsa.aso.web.servlets.LeerCookie</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LeerCookie</servlet-name>
+    <url-pattern>/LeerCookie</url-pattern>
+    <url-pattern>/leer-cookie</url-pattern>
+  </servlet-mapping>
 </web-app>
