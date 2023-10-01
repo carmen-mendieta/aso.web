@@ -6,8 +6,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import py.edu.ucsa.aso.web.jdbc.dao.DAOFactory;
+import py.edu.ucsa.aso.web.jdbc.dao.UsuarioDAO;
+import py.edu.ucsa.aso.web.jdbc.dto.Usuario;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Objects;
 
 /**
  * Servlet implementation class LoginServlet
@@ -36,11 +41,36 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//OBTENEMOS EL OBJETO QUE MANEJA LA SESSION
-		HttpSession session=request.getSession(true); 
-		if(request.getParameter("usuario")!=null) {
-			session.setAttribute("usuario", request.getParameter("usuario"));
+		PrintWriter pw = response.getWriter();
+ 
+         String usuario=null;
+         String clave=null;
+       if (Objects.nonNull(request.getParameter("usuario"))) {
+    	   usuario=request.getParameter("usuario");
 		}
+
+		if (Objects.nonNull(request.getParameter("clave"))) {
+			clave=request.getParameter("clave");
+		}
+		
+		  Usuario usuariodto= DAOFactory.getUsuarioDAO().Autenticar(usuario, clave);
+		  if(Objects.nonNull(usuariodto)) {
+			//OBTENEMOS EL OBJETO QUE MANEJA LA SESSION
+				HttpSession session=request.getSession(true); 
+				if(request.getParameter("usuario")!=null) {
+					session.setAttribute("usuario", request.getParameter("usuario"));
+				}
+				
+				pw.print("<body><h1>Bienvenido/a:" +usuario+ " </h1><hr>");
+
+			  
+		  }else {
+			  
+			  pw.print("<body><h1>Usuario no encontrado</h1><hr>");
+		  }
+				  
+		
+	
 		
 		/*
 		 * if(request.getParameter("clave")!=null) { session.setAttribute("clave",
