@@ -1,23 +1,31 @@
-<!doctype html>
-<html lang="en">
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8" />
+<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Demo Hola mundo</title>
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width" />
 	<!-- <base href="/" /> -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<script src="js/bootstrap.min.js"></script>
+<script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+<!-- 	<script src="js/bootstrap.min.js"></script> -->
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
 </head>
 <body>
-	<header>
-		<h1>Indice</h1>
-	</header>
-	<main>
-		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,23 +56,5 @@
     </div>
   </div>
 </nav>
-	</main>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-  
-  </body>
-
-
-<script type="importmap">
-	{
-		"imports": {
-			"bootstrap": "/webjars/bootstrap/dist/js/bootstrap.esm.min.js"
-		}
-	}
-</script>
-<script type="module">
-	import 'bootstrap';
-</script>
-
+</body>
 </html>

@@ -20,63 +20,66 @@ import java.util.Objects;
 @WebServlet("/login-servlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
- 
-         String usuario=null;
-         String clave=null;
-       if (Objects.nonNull(request.getParameter("usuario"))) {
-    	   usuario=request.getParameter("usuario");
+
+		String usuario = null;
+		String clave = null;
+		if (Objects.nonNull(request.getParameter("usuario"))) {
+			usuario = request.getParameter("usuario");
 		}
 
 		if (Objects.nonNull(request.getParameter("clave"))) {
-			clave=request.getParameter("clave");
+			clave = request.getParameter("clave");
 		}
-		
-		  Usuario usuariodto= DAOFactory.getUsuarioDAO().Autenticar(usuario, clave);
-		  if(Objects.nonNull(usuariodto)) {
-			//OBTENEMOS EL OBJETO QUE MANEJA LA SESSION
-				HttpSession session=request.getSession(true); 
-				if(request.getParameter("usuario")!=null) {
-					session.setAttribute("usuario", request.getParameter("usuario"));
-				}
-				
-				pw.print("<body><h1>Bienvenido/a:" +usuario+ " </h1><hr>");
+		 if (usuario !=null && clave != null ) {
+			 
+			 Usuario usuariodto = DAOFactory.getUsuarioDAO().Autenticar(usuario, clave);
+			 if (Objects.nonNull(usuariodto)) {
+				 // OBTENEMOS EL OBJETO QUE MANEJA LA SESSION
+				 HttpSession session = request.getSession(true);
+				 
+				 session.setAttribute("usuario", usuariodto);
+				 
+				 pw.print("<body><h1>Bienvenido/a:" + usuariodto.getEmail() + " </h1><hr>");
+				 
+			 } else {
+				 
+				 pw.print("<body><h1>Usuario no encontrado</h1><hr>");
+			 }
+		 }else {
+			 pw.print("<body>Complete los campos requeridos <h1></h1><hr>");
+		 }
 
-			  
-		  }else {
-			  
-			  pw.print("<body><h1>Usuario no encontrado</h1><hr>");
-		  }
-				  
-		
-	
-		
 		/*
 		 * if(request.getParameter("clave")!=null) { session.setAttribute("clave",
 		 * request.getParameter("clave")); }
 		 */
-		
+
 	}
 
 }

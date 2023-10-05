@@ -53,4 +53,19 @@
     <url-pattern>/LeerCookie</url-pattern>
     <url-pattern>/leer-cookie</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CerrarSesion</display-name>
+    <servlet-name>CerrarSesion</servlet-name>
+    <servlet-class>py.edu.ucsa.aso.web.servlets.CerrarSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CerrarSesion</servlet-name>
+    <url-pattern>/CerrarSesion</url-pattern>
+    <url-pattern>/cerrar-sesion</url-pattern>
+  </servlet-mapping>
+  <session-config>
+   <session-timeout>30</session-timeout>
+  </session-config>
+  
 </web-app>
