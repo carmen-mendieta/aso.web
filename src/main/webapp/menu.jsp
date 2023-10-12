@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Demo Hola mundo</title>
+	<title>Menu principal del sistema</title>
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width" />
 	<!-- <base href="/" /> -->
@@ -25,31 +25,34 @@
     ></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" >
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Menu</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+      
+       <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link active" aria-current="page" href="#">Expos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="#">Opciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Tipos de Movimientos</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Socios
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#">Pago de Cuotas</a></li>
+            <li><a class="dropdown-item" href="#">Consultar Cuotas Pendientes</a></li>
+            <li><a class="dropdown-item" href="/aso.web/socio-servlet">Registrar Socios</a></li>
           </ul>
         </li>
       </ul>

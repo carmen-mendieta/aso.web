@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.servlet.ServletException;
@@ -38,8 +39,17 @@ public class SociosServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		SocioDAO socioDAO = DAOFactory.getSocioDAO();
+	  if(Objects.isNull(request.getParameter("ACCION")) 
+		  || "".equals(request.getParameter("ACCION"))
+		  || "LISTAR".equals(request.getParameter("ACCION"))) {
+		  List<Socio> socios= socioDAO.listar();
+		  request.getSession().setAttribute("SOCIOS", socios);
+		  request.getRequestDispatcher("listar-socio.jsp").forward(request, response);
+	  }else if("NUEVO".equals(request.getParameter("ACCION"))) {
+		  System.out.println("NUEVO SOCIO");
+		  request.getRequestDispatcher("abm-socio.jsp").forward(request, response);
+	  }
 	}
 
 	/**
