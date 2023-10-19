@@ -48,7 +48,19 @@ public class SociosServlet extends HttpServlet {
 		  request.getRequestDispatcher("listar-socio.jsp").forward(request, response);
 	  }else if("NUEVO".equals(request.getParameter("ACCION"))) {
 		  System.out.println("NUEVO SOCIO");
+		  request.getSession().setAttribute("SOCIOS", socioDAO.listar());
+		  request.getSession().setAttribute("ESTADOS_SOCIOS", DAOFactory.getOpcionDAO().getOpcionesByCodDominio("ESTSOC"));
+		  request.getSession().setAttribute("TIPOS_SOCIOS", DAOFactory.getOpcionDAO().getOpcionesByCodDominio("TIPSOC"));
 		  request.getRequestDispatcher("abm-socio.jsp").forward(request, response);
+	  }else if("INSERTAR".equals(request.getParameter("ACCION"))) {
+		  System.out.println("VAMOS A INSERTAR EL NUEVO SOCIO");
+		  Socio nuevo= new Socio();
+		  nuevo.setNombres(request.getParameter("nombres"));
+		  nuevo.setApellidos(request.getParameter("apellidos"));
+		  socioDAO.insertar(nuevo);
+		  request.setAttribute("MENSAJE", "EL SOCIO HA SIDO GUARDADO CON EXITO");
+		  request.getSession().setAttribute("SOCIOS", socioDAO.listar());
+		  request.getRequestDispatcher("listar-socio.jsp").forward(request, response);
 	  }
 	}
 
