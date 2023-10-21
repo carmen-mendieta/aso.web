@@ -26,9 +26,10 @@
         <font color="#000">Formulario de Socios </font>
     </h2>
     <hr color="green" size="2">
-    <form action="/socio-servlet" method="POST" class="row g-3" >
+    <form action="/aso.web/socio-servlet" method="POST" class="row g-3" >
        <input type="hidden" id="id-socio" name="id-socio" value=""> <br> <br>
        <input type="hidden" id="ACCION" name="ACCION" value="INSERTAR"> <br> <br>
+       
        <div class="col-md-6">
             <label for="nombres" class="form-label">Nombres: </label>
              <input type="text" class="form-control" id="nombres" name="nombres" aria-describedby="nombresHelp" >
@@ -36,13 +37,6 @@
               No compartimos tus nombres con nadie. 
              </div> 
        </div>
-        <div class="col-md-6">   
-            <label for="apellidos"   class="form-label" >Apellidos</label>
-           <input type="text" class="form-control" id="apellidos" name="apellidos"aria-describedby="apellidosHelp" >
-            <div id="apellidosHelp" class="form-text" >
-              No compartimos tus nombres con nadie. 
-             </div> 
-          </div>
        
       	<div class="col-md-6">   
                

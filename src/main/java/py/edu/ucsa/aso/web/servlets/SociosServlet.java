@@ -57,13 +57,28 @@ public class SociosServlet extends HttpServlet {
 		  Socio nuevo= new Socio();
 		  nuevo.setNombres(request.getParameter("nombres"));
 		  nuevo.setApellidos(request.getParameter("apellidos"));
-		  socioDAO.insertar(nuevo);
+		  nuevo.setEmail(request.getParameter("email"));
+		  nuevo.setNroSocio(Integer.parseInt(request.getParameter("nroSocio")));
+		  nuevo.setNroCedula(Integer.parseInt(request.getParameter("nroCedula")));
+		  LocalDateTime ahora = LocalDateTime.now();
+		  nuevo.setFechaIngreso(ahora);
+		  Opcion estado = new Opcion();
+		  estado.setId(Integer.parseInt(request.getParameter("estadoActual")));
+		  nuevo.setEstadoActual(estado);
+		  nuevo.setFundador(request.getParameter("fundador") != null && "on".equals(request.getParameter("fundador")));
+		  Socio socio = new Socio();
+		  socio.setId(Integer.parseInt(request.getParameter("socioProponente")));
+		  nuevo.setSocioPoponente(socio);
+		  Opcion tipoSocio = new Opcion();
+		  tipoSocio.setId(Integer.parseInt(request.getParameter("tipoSocio")));
+		  nuevo.setTipoSocio(tipoSocio);
 		  request.setAttribute("MENSAJE", "EL SOCIO HA SIDO GUARDADO CON EXITO");
-		  request.getSession().setAttribute("SOCIOS", socioDAO.listar());
-		  request.getRequestDispatcher("listar-socio.jsp").forward(request, response);
+	      request.getSession().setAttribute("SOCIOS", socioDAO.listar()); 
+	 	  request.getRequestDispatcher("listar-socio.jsp").forward(request, response);
+	  
 	  }
+	  
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -119,9 +134,6 @@ public class SociosServlet extends HttpServlet {
 		dto.setUsuarioCreacion(new Usuario(1));
 		socioDAO.insertar(dto);
 
-		PrintWriter pw = response.getWriter();
-		pw.print("<html><head><title>Mostrar Parametros</title></head>");
-		pw.print("<body><h1>Parametro</h1><hr>");
 
 		
 		
