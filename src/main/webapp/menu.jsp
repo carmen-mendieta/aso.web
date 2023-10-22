@@ -41,7 +41,7 @@
           <a class="nav-link active" aria-current="page" href="#">Expos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Opciones</a>
+          <a class="nav-link" href="/aso.web/opcion-servlet">Opciones</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Tipos de Movimientos</a>
