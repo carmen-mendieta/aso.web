@@ -4,11 +4,20 @@
 <html>
 <meta charset="utf-8" />
 <%@include file="menu.jsp" %>
+<script type="text/javascript">
+	function cargarNuevo(){
+		document.getElementById("grillaOpcionForm").submit();
+	}
+</script>
 <body>
-	<div class="container">
+   <form id="grillaOpcionForm" action="/aso.web/opcion-servlet" method="GET" >
+		<input type="hidden" name="ACCION" id="ACCION" value="NUEVO">
+		<input type="hidden" name="ID" id="ID" value="">
+	</form>
+<div class="container">
 		<div class="row mt-4 mb-3 justify-content-end">
 			<div class="col-auto">
-				<button class="btn btn-primary">Nueva opción</button>
+				<button type="button" onclick="cargarNuevo()" class="btn btn-primary">Nueva opción</button>
 			</div>
 		</div>
 	   <table class="table">

@@ -1,5 +1,5 @@
 <%@ page language="java" %>
- <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8" />
