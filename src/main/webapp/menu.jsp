@@ -50,7 +50,7 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Socios
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Pago de Cuotas</a></li>
+            <li><a class="dropdown-item" href="/aso.web/pago-servlet">Pago de Cuotas</a></li>
             <li><a class="dropdown-item" href="#">Consultar Cuotas Pendientes</a></li>
             <li><a class="dropdown-item" href="/aso.web/socio-servlet">Registrar Socios</a></li>
           </ul>
