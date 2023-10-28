@@ -42,11 +42,21 @@ public class PagoServlet extends HttpServlet {
 				  || "LISTAR".equals(request.getParameter("ACCION"))) {
 				  List<PagosCuotaSocios> pagos= pagoDao.listar();
 				  request.getSession().setAttribute("PAGOS", pagos);
+				  List<Socio> listasocios= DAOFactory.getSocioDAO().listar();
+				  request.getSession().setAttribute("LISTASOCIOS", listasocios);
 				  request.getRequestDispatcher("listar-pagos.jsp").forward(request, response);
 			  }else if("NUEVO".equals(request.getParameter("ACCION"))) {
 				  System.out.println("NUEVO PAGO");
-				  request.getSession().setAttribute("PAGOS", pagoDao.listar());
-				  request.getRequestDispatcher("abm-socio.jsp").forward(request, response);
+				  List<Socio> listaSocios = DAOFactory.getSocioDAO().listar();
+			        request.getSession().setAttribute("LISTASOCIOS", listaSocios);
+			        request.getRequestDispatcher("abm-pago.jsp").forward(request, response);
+				  
+					/*
+					 * request.getSession().setAttribute("PAGOS", pagoDao.listar());
+					 * request.getSession().setAttribute("LISTASOCIOS",
+					 * DAOFactory.getPagoCuotaDAO().listar());
+					 * request.getRequestDispatcher("abm-pago.jsp").forward(request, response);
+					 */
 				} 
 		
 		/*
