@@ -31,6 +31,16 @@
             <option value="${socio.id}">${socio.nombres} ${socio.apellidos} </option>
         </c:forEach>
     </select>
+    
+    <label>Conceptos de Pagos:</label>
+    <select name="concepto">
+        <c:forEach var="concepto" items="${LISTACONCEPTOS}">
+            <option value="${concepto.id}">
+                 ${concepto.descripcion} 
+               
+             </option>
+        </c:forEach>
+    </select>
  </div>
    
  </div>

@@ -13,6 +13,7 @@ import py.edu.ucsa.aso.web.jdbc.dto.PagosCuotaSocios;
 import py.edu.ucsa.aso.web.jdbc.dto.Socio;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,19 +37,21 @@ public class PagoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PagoCuotaDAO pagoDao = DAOFactory.getPagoCuotaDAO();
-		
+			
 		if(Objects.isNull(request.getParameter("ACCION")) 
 				  || "".equals(request.getParameter("ACCION"))
 				  || "LISTAR".equals(request.getParameter("ACCION"))) {
 				  List<PagosCuotaSocios> pagos= pagoDao.listar();
+				  //System.out.println("lista: " + pagos.size());
 				  request.getSession().setAttribute("PAGOS", pagos);
-				  List<Socio> listasocios= DAOFactory.getSocioDAO().listar();
-				  request.getSession().setAttribute("LISTASOCIOS", listasocios);
+				  List<Socio> listaSocios= DAOFactory.getSocioDAO().listar();
+				  request.getSession().setAttribute("LISTASOCIOS", listaSocios);
 				  request.getRequestDispatcher("listar-pagos.jsp").forward(request, response);
 			  }else if("NUEVO".equals(request.getParameter("ACCION"))) {
 				  System.out.println("NUEVO PAGO");
 				  List<Socio> listaSocios = DAOFactory.getSocioDAO().listar();
 			        request.getSession().setAttribute("LISTASOCIOS", listaSocios);
+			        request.getSession().setAttribute("LISTACONCEPTOS", DAOFactory.getOpcionDAO().getOpcionesByCodOpciones(Arrays.asList("COMED", "PAGC", "CENANIV")));
 			        request.getRequestDispatcher("abm-pago.jsp").forward(request, response);
 				  
 					/*
