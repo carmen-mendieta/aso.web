@@ -38,8 +38,8 @@
 				      	<td><c:out value="${opcion.codigo}"></c:out></td>
 				      	<td><c:out value="${opcion.descripcion} "></c:out></td>
 				      	<td><c:out value="${opcion.estado}"></c:out></td>
-				      	<td><c:out value="${opcion.dominio}"></c:out></td>
-				      	<td></td>
+				      	<td><c:out value="${opcion.dominio.descripcion}"></c:out></td>
+				      	<td><c:out value="${opcion.opcionPadre.descripcion}"></c:out></td>
 			    	</tr> 
 			   	</c:forEach>
 			</tbody>

@@ -42,7 +42,7 @@
      <tr>
       <td colspan="6" align="right">
 	      <div class="col-auto">
-	      	<button type="button" onclick="cargarNuevo()" class="btn bt-primary mb-3">
+	      	<button type="button" onclick="cargarNuevo()" class="btn btn-primary mb-3">
 	      		Nuevo socio
 	      	</button>
 	      </div>

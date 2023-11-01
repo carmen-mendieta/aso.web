@@ -52,6 +52,7 @@ public class PagoServlet extends HttpServlet {
 				  List<Socio> listaSocios = DAOFactory.getSocioDAO().listar();
 			        request.getSession().setAttribute("LISTASOCIOS", listaSocios);
 			        request.getSession().setAttribute("LISTACONCEPTOS", DAOFactory.getOpcionDAO().getOpcionesByCodOpciones(Arrays.asList("COMED", "PAGC", "CENANIV")));
+			        request.getSession().setAttribute("MEDIOSPAGOS", DAOFactory.getOpcionDAO().getOpcionesByCodDominio("MEDPAG"));
 			        request.getRequestDispatcher("abm-pago.jsp").forward(request, response);
 				  
 					/*
