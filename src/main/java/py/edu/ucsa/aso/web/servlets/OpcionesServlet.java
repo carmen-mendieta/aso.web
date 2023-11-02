@@ -58,6 +58,8 @@ public class OpcionesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		if("INSERTAR".equals(request.getParameter("ACCION"))) { 
+		 
 		OpcionDAO opcionesDao = DAOFactory.getOpcionDAO();
 		Opcion dto = new Opcion();
 		
@@ -79,20 +81,32 @@ public class OpcionesServlet extends HttpServlet {
 			dto.setDominio(domi);
 		}
 		
-		if (Objects.nonNull(request.getParameter("opcionPadre"))) {
+		if (Objects.nonNull(request.getParameter("opcionPadre")) && !"".equals(request.getParameter("opcionPadre"))) {
 			Opcion opadre = new Opcion();
 			opadre.setId(Integer.parseInt(request.getParameter("opcionPadre")));
 			dto.setOpcionPadre(opadre);
 		}
 		
+		
 		try {
 		    opcionesDao.insertar(dto);
 		    request.getSession().setAttribute("OPCIONES", opcionesDao.listar());
-		    response.sendRedirect("listar-opciones.jsp");  // Redirige a la página de listado después de la inserción
+		    request.getRequestDispatcher("listar-opciones.jsp").forward(request, response);  // Redirige a la página de listado después de la inserción
 		} catch (Exception e) {
-		    e.printStackTrace();  // Imprime el error en la consola del servidor para debugging
-		    // Puedes redirigir a una página de error o manejarlo de alguna otra manera según tus necesidades
+		    e.printStackTrace();  
+		   
 		    response.sendRedirect("error-page.jsp");
+		}
+		
+		}else if ("EDITAR".equals(request.getParameter("ACCION"))) {
+			Opcion dto= DAOFactory.getOpcionDAO().getById(Integer.parseInt(request.getParameter("ID")));
+			request.getSession().setAttribute("OPCION", dto);
+			
+			
+		}else if ("ELIMINAR".equals(request.getParameter("ACCION"))) {
+			System.out.println("ELIMINAMOS EL REGISTRO");
+		//	DAOFactory.getOpcionDAO().eliminar(Integer.parseInt(request.getParameter("ID")));
+			
 		}
 		
 	}

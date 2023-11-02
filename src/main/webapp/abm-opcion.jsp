@@ -24,7 +24,8 @@
 		</h2>
 		<hr color="green" size="2">
 		<form action="/aso.web/opcion-servlet" method="POST" class="row g-3" ><br> <br>
-      
+         <input type="hidden" id="id-opcion" name="id-opcion" value=""> <br> <br>
+         <input type="hidden" id="ACCION" name="ACCION" value="INSERTAR"> <br> <br>
      
        
 			<div class="col-md-6">
@@ -66,6 +67,7 @@
 				<label for="opcionPadre" class="form-label">Opcion Padre</label> <select
 					class="form-select" aria-label="Seleccione la opcion Padre"
 					id="opcionPadre" name="opcionPadre">
+					<option value="">Seleccione un padre(opcional)</option>
 					<c:forEach var="opcionPadre" items="${OPADRE}">
 						<option value="${opcionPadre.id}">
 							${opcionPadre.descripcion}</option>

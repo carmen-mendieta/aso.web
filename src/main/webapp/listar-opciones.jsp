@@ -8,6 +8,13 @@
 	function cargarNuevo(){
 		document.getElementById("grillaOpcionForm").submit();
 	}
+	
+	function eliminar(){
+		document.getElementById("ACCION").value = 'ELIMINAR';
+		document.getElementById("grillaOpcionForm").method = 'POST';
+		document.getElementById("grillaOpcionForm").submit();
+	}
+</script>
 </script>
 <body>
    <form id="grillaOpcionForm" action="/aso.web/opcion-servlet" method="GET" >
@@ -29,6 +36,7 @@
 					<th scope="col">ESTADO</th>
 					<th scope="col">DOMINIO</th>
 					<th scope="col">PADRE</th>
+					<th scope="col">ACCIONES</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,10 +48,63 @@
 				      	<td><c:out value="${opcion.estado}"></c:out></td>
 				      	<td><c:out value="${opcion.dominio.descripcion}"></c:out></td>
 				      	<td><c:out value="${opcion.opcionPadre.descripcion}"></c:out></td>
+				      	<td>
+				      		<div class="row">
+					      	  	<div class="col-auto">
+					         		<button class="btn btn-warning mb-3">Editar</button>
+				        		</div>
+				        		<div class="col-auto">
+					         		<button type="button" class="btn btn-danger mb-3"
+									data-bs-toggle="modal"
+									data-bs-id="<c:out value='${opcion.id}'></c:out>" 
+									data-bs-target="#eliminarModal">Eliminar</button>
+				        		</div>
+				      		</div>
+				      	  
+				      	</td>
 			    	</tr> 
 			   	</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	
+	<div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminacion de registros</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="parrafoTexto">¿Estas seguro que desea eliminar el registro?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
 </body>
+<script>
+	const deleteModal = document.getElementById('eliminarModal');
+	if (deleteModal) {
+	  deleteModal.addEventListener('show.bs.modal', event => {
+	    // Button that triggered the modal
+	    const button = event.relatedTarget;
+	    // Extract info from data-bs-* attributes
+	    const idToDelete = button.getAttribute('data-bs-id');
+	    // If necessary, you could initiate an Ajax request here
+	    // and then do the updating in a callback.
+	
+	    // Update the modal's content.
+	    const parrafoTexto = deleteModal.querySelector('#parrafoTexto')
+	    //const modalBodyInput = exampleModal.querySelector('.modal-body input')
+		document.getElementById("ID").value = idToDelete; 
+	    parrafoTexto.textContent = `¿Está seguro de querer eliminar el registro de ID ` + button.getAttribute('data-bs-id') + `?`
+	    //modalBodyInput.value = recipient
+	  })
+	}
+</script>
 </html>
