@@ -14,6 +14,13 @@
 		document.getElementById("grillaOpcionForm").method = 'POST';
 		document.getElementById("grillaOpcionForm").submit();
 	}
+	function editar(id){
+		document.getElementById("ACCION").value = 'EDITAR';
+		document.getElementById("ID").value = id;
+		document.getElementById("grillaOpcionForm").method = 'POST';
+		document.getElementById("grillaOpcionForm").submit();
+	}
+	
 </script>
 </script>
 <body>
@@ -91,19 +98,11 @@
 	const deleteModal = document.getElementById('eliminarModal');
 	if (deleteModal) {
 	  deleteModal.addEventListener('show.bs.modal', event => {
-	    // Button that triggered the modal
 	    const button = event.relatedTarget;
-	    // Extract info from data-bs-* attributes
 	    const idToDelete = button.getAttribute('data-bs-id');
-	    // If necessary, you could initiate an Ajax request here
-	    // and then do the updating in a callback.
-	
-	    // Update the modal's content.
 	    const parrafoTexto = deleteModal.querySelector('#parrafoTexto')
-	    //const modalBodyInput = exampleModal.querySelector('.modal-body input')
 		document.getElementById("ID").value = idToDelete; 
 	    parrafoTexto.textContent = `¿Está seguro de querer eliminar el registro de ID ` + button.getAttribute('data-bs-id') + `?`
-	    //modalBodyInput.value = recipient
 	  })
 	}
 </script>
