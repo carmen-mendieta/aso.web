@@ -58,10 +58,10 @@
 				      	<td>
 				      		<div class="row">
 					      	  	<div class="col-auto">
-					         		<button class="btn btn-warning mb-3">Editar</button>
+					         		<button class="btn btn-warning mb-3" onclick="editar(${opcion.id})">Editar</button>
 				        		</div>
 				        		<div class="col-auto">
-					         		<button type="button" class="btn btn-danger mb-3"
+					         		<button type="button" class="btn btn-danger mb-3" 
 									data-bs-toggle="modal"
 									data-bs-id="<c:out value='${opcion.id}'></c:out>" 
 									data-bs-target="#eliminarModal">Eliminar</button>
@@ -94,6 +94,13 @@
 </div>
 	
 </body>
+<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" >
+
+
+
+</script>
+
 <script>
 	const deleteModal = document.getElementById('eliminarModal');
 	if (deleteModal) {

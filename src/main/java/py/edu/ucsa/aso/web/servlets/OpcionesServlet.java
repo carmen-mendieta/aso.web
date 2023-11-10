@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import py.edu.ucsa.aso.web.jdbc.dao.DAOFactory;
 import py.edu.ucsa.aso.web.jdbc.dao.OpcionDAO;
 import py.edu.ucsa.aso.web.jdbc.dto.Opcion;
@@ -39,15 +41,32 @@ public class OpcionesServlet extends HttpServlet {
 		 if(Objects.isNull(request.getParameter("ACCION")) 
 				  || "".equals(request.getParameter("ACCION"))
 				  || "LISTAR".equals(request.getParameter("ACCION"))) {
-				  List<Opcion> opcion= opcionesDao.listar();
-				  request.getSession().setAttribute("OPCIONES", opcion);
+				
+				  
+				  if(Objects.isNull(request.getParameter("FORMATO"))
+						  || "HTML".equals(request.getParameter("FORMATO"))){	
+					  List<Opcion> opciones= opcionesDao.listar();
+						request.getSession().setAttribute("OPCIONES", opciones);
 				  request.getRequestDispatcher("listar-opciones.jsp").forward(request, response);
-//		
+				  } else if("JSON".equals(request.getParameter("FORMATO"))) {
+					  response.setContentType("application/json");
+					  if(Objects.isNull(request.getParameter("ID-DOMINIO"))){
+						  List<Opcion> opciones= opcionesDao.listar();
+						  response.getWriter().print(JSONArray.fromObject(opciones));
+					  }else {
+						  List<Opcion> opciones= opcionesDao.getOpcionesByIDDominio(Integer.parseInt(request.getParameter("ID-DOMINIO")));
+						  response.getWriter().print(JSONArray.fromObject(opciones));
+					  }
+					  
+//					  else{
+//						  Opcion opc= opcionesDao.getById(Integer.parseInt(request.getParameter("ID-DOMINIO")));
+//						  response.getWriter().print(JSONObject.fromObject(opc));
+//					  }
+				  }
 		 }	else if("NUEVO".equals(request.getParameter("ACCION"))) {
 			  System.out.println("NUEVA OPCION");
 			 request.getSession().setAttribute("OPCIONES",opcionesDao.listar());
 			  request.getSession().setAttribute("DOMINIOS", DAOFactory.getDominioDAO().listar());
-			  request.getSession().setAttribute("OPADRE", DAOFactory.getOpcionDAO().listar());
 		     request.getRequestDispatcher("abm-opcion.jsp").forward(request, response);  
 		   
 		 }
@@ -101,7 +120,35 @@ public class OpcionesServlet extends HttpServlet {
 		}else if ("EDITAR".equals(request.getParameter("ACCION"))) {
 			Opcion dto= DAOFactory.getOpcionDAO().getById(Integer.parseInt(request.getParameter("ID")));
 			request.getSession().setAttribute("OPCION", dto);
+			 request.getSession().setAttribute("OPCIONES",DAOFactory.getOpcionDAO().listar());
+			  request.getSession().setAttribute("DOMINIOS", DAOFactory.getDominioDAO().listar());
+		     request.getRequestDispatcher("abm-opcion.jsp").forward(request, response);
 			
+			
+		}else if ("ACTUALIZAR".equals(request.getParameter("ACCION"))) {
+			
+		Opcion dto=(Opcion)request.getSession().getAttribute("OPCION");
+		dto.setCodigo(request.getParameter("codigo"));
+		dto.setDescripcion(request.getParameter("descripcion"));
+		dto.setEstado(request.getParameter("estado"));
+		Dominio domi = new Dominio();
+		domi.setId(Integer.parseInt(request.getParameter("dominio")));
+		dto.setDominio(domi);
+		if (Objects.nonNull(request.getParameter("opcionPadre")) && !"".equals(request.getParameter("opcionPadre"))) {
+			dto.setOpcionPadre( new Opcion(Integer.parseInt(request.getParameter("opcionPadre"))));
+		}else {
+			dto.setOpcionPadre(null);
+		}
+		try {
+		 DAOFactory.getOpcionDAO().modificar(dto);
+		    request.getSession().setAttribute("OPCIONES", DAOFactory.getOpcionDAO().listar());
+		    request.getRequestDispatcher("listar-opciones.jsp").forward(request, response);  // Redirige a la página de listado después de la inserción
+		} catch (Exception e) {
+		   System.out.println("EN EL FRONT POST:" +e.getLocalizedMessage());
+		   
+		    response.sendRedirect("error-page.jsp");
+		}
+		
 			
 		}else if ("ELIMINAR".equals(request.getParameter("ACCION"))) {
 			System.out.println("ELIMINAMOS EL REGISTRO");

@@ -24,14 +24,14 @@
 		</h2>
 		<hr color="green" size="2">
 		<form action="/aso.web/opcion-servlet" method="POST" class="row g-3" ><br> <br>
-         <input type="hidden" id="id-opcion" name="id-opcion" value=""> <br> <br>
-         <input type="hidden" id="ACCION" name="ACCION" value="INSERTAR"> <br> <br>
-     
-       
+       <input type="hidden" id="id-opcion" name="id-opcion" value="${OPCION != null && OPCION.id != null ?
+						OPCION.id : ''}"> <br> <br>
+         <input type="hidden" id="ACCION" name="ACCION" value="${OPCION != null && OPCION.id != null ?
+						'ACTUALIZAR' : 'INSERTAR'}"> <br> <br>
 			<div class="col-md-6">
 				<label for="codigo" class="form-label">Codigo: </label><input
 					type="text" class="form-control" id="codigo" name="codigo"
-					aria-describedby="codigoHelp"> 
+					aria-describedby="codigoHelp" value="${OPCION.codigo != null  ? OPCION.codigo : ''}"> 
 				<div id="codigoHelp" class="form-text"></div>
 			</div>
 
@@ -39,15 +39,16 @@
 				<label for="descripcion" class="form-label">Descripcion: </label> 
 				<input
 					type="text" class="form-control" id="descripcion"
-					name="descripcion" aria-describedby="descripcionHelp">
+					name="descripcion" aria-describedby="descripcionHelp" value="${OPCION.descripcion != null  ? OPCION.descripcion : ''}">
 				<div id="descripcionHelp" class="form-text">
 				</div>
 			</div>
 
 			<div class="col-md-6">
-				<label for="estado" class="form-label">Estado: </label> <input
+				<label for="estado" class="form-label">Estado: </label> 
+				<input
 					type="text" class="form-control" id="estado" name="estado"
-					aria-describedby="estadoHelp">
+					aria-describedby="estadoHelp" value="${OPCION.estado != null  ? OPCION.estado : ''}" >
 				<div id="estadoHelp" class="form-text"></div>
 			</div>
 
@@ -57,7 +58,8 @@
 					class="form-select" aria-label="Seleccione el dominio" id="dominio"
 					name="dominio">
 					<c:forEach var="dominio" items="${DOMINIOS}">
-						<option value="${dominio.id}">
+							<option value="${dominio.id}" 
+							${dominio.id == OPCION.dominio.id ? 'selected="selected"' : ''}>
 							${dominio.descripcion}</option>
 					</c:forEach>
 				</select>
@@ -68,7 +70,7 @@
 					class="form-select" aria-label="Seleccione la opcion Padre"
 					id="opcionPadre" name="opcionPadre">
 					<option value="">Seleccione un padre(opcional)</option>
-					<c:forEach var="opcionPadre" items="${OPADRE}">
+					<c:forEach var="opcionPadre" items="${OPCIONES}">
 						<option value="${opcionPadre.id}">
 							${opcionPadre.descripcion}</option>
 					</c:forEach>
