@@ -47,6 +47,7 @@ public class OpcionesServlet extends HttpServlet {
 						  || "HTML".equals(request.getParameter("FORMATO"))){	
 					  List<Opcion> opciones= opcionesDao.listar();
 						request.getSession().setAttribute("OPCIONES", opciones);
+						request.getSession().setAttribute("DOMINIOS", DAOFactory.getDominioDAO().listar());
 				  request.getRequestDispatcher("listar-opciones.jsp").forward(request, response);
 				  } else if("JSON".equals(request.getParameter("FORMATO"))) {
 					  response.setContentType("application/json");
@@ -54,7 +55,7 @@ public class OpcionesServlet extends HttpServlet {
 						  List<Opcion> opciones= opcionesDao.listar();
 						  response.getWriter().print(JSONArray.fromObject(opciones));
 					  }else {
-						  List<Opcion> opciones= opcionesDao.getOpcionesByIDDominio(Integer.parseInt(request.getParameter("ID-DOMINIO")));
+						  List<Opcion> opciones= opcionesDao.getOpcionesByIdDominio(Integer.parseInt(request.getParameter("ID-DOMINIO")));
 						  response.getWriter().print(JSONArray.fromObject(opciones));
 					  }
 					  

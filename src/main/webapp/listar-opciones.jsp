@@ -30,6 +30,18 @@
 	</form>
 <div class="container">
 		<div class="row mt-4 mb-3 justify-content-end">
+			<div class="col-md-6">
+					<label for="dominio" class="form-label">Dominio</label> 
+					<select
+						class="form-select" aria-label="Seleccione el dominio" id="dominio"
+						name="dominio">
+						<c:forEach var="dominio" items="${DOMINIOS}">
+								<option value="${dominio.id}" 
+								${dominio.id == OPCION.dominio.id ? 'selected="selected"' : ''}>
+								${dominio.descripcion}</option>
+						</c:forEach>
+					</select>
+			</div>
 			<div class="col-auto">
 				<button type="button" onclick="cargarNuevo()" class="btn btn-primary">Nueva opción</button>
 			</div>
@@ -96,11 +108,21 @@
 </body>
 <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" >
-
-
-
+	
+	$('#dominio').on('change',function () {
+		var id = $('#dominio').val();
+		console.log('Test 2', id);
+		$.ajax({
+			url: '/aso.web/opcion-servlet?ACCION=LISTAR&FORMATO=JSON&ID-DOMINIO=' +id,
+			type: "GET",
+			success: function (data) {
+			//	console.log('log', data);
+			//	console.table(data);
+				//$('#direccionProv').val(data.direccion);
+				}
+			});
+		});
 </script>
-
 <script>
 	const deleteModal = document.getElementById('eliminarModal');
 	if (deleteModal) {
