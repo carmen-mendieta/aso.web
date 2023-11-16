@@ -22,7 +22,7 @@
 	}
 	
 </script>
-</script>
+<link href="https://cdn.datatables.net/v/dt/dt-1.13.7/datatables.min.css" rel="stylesheet">
 <body>
    <form id="grillaOpcionForm" action="/aso.web/opcion-servlet" method="GET" >
 		<input type="hidden" name="ACCION" id="ACCION" value="NUEVO">
@@ -32,7 +32,7 @@
 		<div class="row mt-4 mb-3 justify-content-end">
 			<div class="col-md-6">
 					<label for="dominio" class="form-label">Dominio</label> 
-					<select
+					<select onchange=""
 						class="form-select" aria-label="Seleccione el dominio" id="dominio"
 						name="dominio">
 						<c:forEach var="dominio" items="${DOMINIOS}">
@@ -46,7 +46,7 @@
 				<button type="button" onclick="cargarNuevo()" class="btn btn-primary">Nueva opción</button>
 			</div>
 		</div>
-	   <table class="table">
+	   <table class="table"  id="tabla-opciones">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Id</th>
@@ -58,32 +58,32 @@
 					<th scope="col">ACCIONES</th>
 				</tr>
 			</thead>
-			<tbody>
-				<c:forEach var="opcion" items="${sessionScope.OPCIONES}">
-			        <tr>
-				    	<th scope="row"><c:out value="${opcion.id}"></c:out></th>
-				      	<td><c:out value="${opcion.codigo}"></c:out></td>
-				      	<td><c:out value="${opcion.descripcion} "></c:out></td>
-				      	<td><c:out value="${opcion.estado}"></c:out></td>
-				      	<td><c:out value="${opcion.dominio.descripcion}"></c:out></td>
-				      	<td><c:out value="${opcion.opcionPadre.descripcion}"></c:out></td>
-				      	<td>
-				      		<div class="row">
-					      	  	<div class="col-auto">
-					         		<button class="btn btn-warning mb-3" onclick="editar(${opcion.id})">Editar</button>
-				        		</div>
-				        		<div class="col-auto">
-					         		<button type="button" class="btn btn-danger mb-3" 
-									data-bs-toggle="modal"
-									data-bs-id="<c:out value='${opcion.id}'></c:out>" 
-									data-bs-target="#eliminarModal">Eliminar</button>
-				        		</div>
-				      		</div>
+<!-- 			<tbody> -->
+<%-- 				<c:forEach var="opcion" items="${sessionScope.OPCIONES}"> --%>
+<!-- 			        <tr> -->
+<%-- 				    	<th scope="row"><c:out value="${opcion.id}"></c:out></th> --%>
+<%-- 				      	<td><c:out value="${opcion.codigo}"></c:out></td> --%>
+<%-- 				      	<td><c:out value="${opcion.descripcion} "></c:out></td> --%>
+<%-- 				      	<td><c:out value="${opcion.estado}"></c:out></td> --%>
+<%-- 				      	<td><c:out value="${opcion.dominio.descripcion}"></c:out></td> --%>
+<%-- 				      	<td><c:out value="${opcion.opcionPadre.descripcion}"></c:out></td> --%>
+<!-- 				      	<td> -->
+<!-- 				      		<div class="row"> -->
+<!-- 					      	  	<div class="col-auto"> -->
+<%-- 					         		<button class="btn btn-warning mb-3" onclick="editar(${opcion.id})">Editar</button> --%>
+<!-- 				        		</div> -->
+<!-- 				        		<div class="col-auto"> -->
+<!-- 					         		<button type="button" class="btn btn-danger mb-3"  -->
+<!-- 									data-bs-toggle="modal" -->
+<%-- 									data-bs-id="<c:out value='${opcion.id}'></c:out>"  --%>
+<!-- 									data-bs-target="#eliminarModal">Eliminar</button> -->
+<!-- 				        		</div> -->
+<!-- 				      		</div> -->
 				      	  
-				      	</td>
-			    	</tr> 
-			   	</c:forEach>
-			</tbody>
+<!-- 				      	</td> -->
+<!-- 			    	</tr>  -->
+<%-- 			   	</c:forEach> --%>
+<!-- 			</tbody> -->
 		</table>
 	</div>
 	
@@ -107,9 +107,10 @@
 	
 </body>
 <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" >
+<script src="https://cdn.datatables.net/v/dt/dt-1.13.7/datatables.min.js"></script>
+<!-- <script type="text/javascript" > -->
 	
-	$('#dominio').on('change',function () {
+	<!-- $('#dominio').on('change',function () {
 		var id = $('#dominio').val();
 		console.log('Test 2', id);
 		$.ajax({
@@ -121,8 +122,8 @@
 				//$('#direccionProv').val(data.direccion);
 				}
 			});
-		});
-</script>
+		}); -->
+<!-- </script> -->
 <script>
 	const deleteModal = document.getElementById('eliminarModal');
 	if (deleteModal) {
@@ -135,4 +136,59 @@
 	  })
 	}
 </script>
+<script type="text/javascript">
+	var tablaOpciones;
+
+	var columns = [{
+	    "title": "Id",
+	    "data": "id"
+	}, {
+	    "title": "Codigo",
+	    "data": "codigo"
+	},{
+	    "title": "Descripcion",
+	    "data": "descripcion"
+	},{
+	    "title": "Estado",
+	    "data": "estado"
+	},{
+	    "title": "Dominio",
+	    "data": "dominio.descripcion"
+	},{
+	    "title": "Opcion Padre",
+	    "data": "opcionPadre.descripcion"
+	},{
+	    "title": "Acciones",
+	    "name": "Acciones", 
+	    "sWidth": 30, 
+	    "render": function(data,type,full,meta){
+	    	var botones = "<input type=\"button\" value=\"Editar\" onclick=\"editar("
+		    			+data.id+");\" class=\"btn btn-info\">";
+		    botones += '<button type="button" class="btn btn-danger mb-3"'
+		    			+' data-bs-toggle="modal" data-bs-id="' + data.id + '"'
+						+' data-bs-target="#eliminarModal">Eliminar</button>';
+			return botones;
+		},
+	    "bSortable": false, 
+	    "bSearchable": false,
+	    "data":null
+	}];
+	
+	$(document).ready( function () {
+		tablaOpciones = $('#tabla-opciones').DataTable({
+			"columns": columns,
+			"ajax": {"url":'/aso.web/opcion-servlet?ACCION=LISTAR&FORMATO=JSON',"dataSrc":""}
+		});
+	} );
+	
+	$('#dominio').on('change',function () {
+	    var id = $('#dominio').val();
+		var ajax_source = '/aso.web/opcion-servlet?ACCION=LISTAR&FORMATO=JSON&ID-DOMINIO=' +id;
+		var table = $("#tabla-opciones").DataTable(); // get api instance
+	    // load data using api
+	    table.ajax.url(ajax_source).load();
+    
+	});
+</script>
+
 </html>

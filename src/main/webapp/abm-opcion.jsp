@@ -72,7 +72,7 @@
 					<option value="">Seleccione un padre(opcional)</option>
 					<c:forEach var="opcionPadre" items="${OPCIONES}">
 						<option value="${opcionPadre.id}">
-							${opcionPadre.descripcion}</option>
+							${opcionPadre.descripcion} (Dominio:${opcionPadre.dominio.descripcion}) </option>
 					</c:forEach>
 				</select>
 			</div>

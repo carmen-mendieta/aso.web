@@ -69,8 +69,11 @@ public class LoginServlet extends HttpServlet {
 				 
 			 } else {
 				 
-				 pw.print("<body><h1>Usuario no encontrado</h1><hr>");
-			 }
+				// pw.print("<body><h1>Usuario no encontrado</h1><hr>");
+				 request.setAttribute("errorMensaje", "Usuario no encontrado");
+				    request.getRequestDispatcher("login.jsp").forward(request, response);
+				}
+			 
 		 }else {
 			 pw.print("<body>Complete los campos requeridos <h1></h1><hr>");
 		 }

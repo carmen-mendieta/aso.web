@@ -65,7 +65,26 @@
     <url-pattern>/cerrar-sesion</url-pattern>
   </servlet-mapping>
   <session-config>
-   <session-timeout>30</session-timeout>
+    <session-timeout>30</session-timeout>
   </session-config>
-  
+  <servlet>
+    <description></description>
+    <display-name>OpcionesServlet</display-name>
+    <servlet-name>OpcionesServlet</servlet-name>
+    <servlet-class>py.edu.ucsa.aso.web.servlets.OpcionesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OpcionesServlet</servlet-name>
+    <url-pattern>/OpcionesServlet</url-pattern>
+    <url-pattern>/opcion-servlet</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>AuthFilter</display-name>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>py.edu.ucsa.aso.web.filtros.AuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/AuthFilter</url-pattern>
+  </filter-mapping>
 </web-app>
