@@ -45,38 +45,49 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
+		
+		Usuario usuario= DAOFactory.getUsuarioDAO().Autenticar( request.getParameter("usuario"), request.getParameter("clave"));
+		if(Objects.isNull(usuario)) {
+			request.getRequestDispatcher("loginUsuario.jsp").forward(request, response);
+			
+		}else {
+			request.getSession(true).setAttribute("SOCIO_CONECTADO", usuario);
+			request.getRequestDispatcher("menu.jsp").forward(request, response);
+		} 
+		
+		
+//		PrintWriter pw = response.getWriter();
 
-		String usuario = null;
-		String clave = null;
-		if (Objects.nonNull(request.getParameter("usuario"))) {
-			usuario = request.getParameter("usuario");
-		}
-
-		if (Objects.nonNull(request.getParameter("clave"))) {
-			clave = request.getParameter("clave");
-		}
-		 if (usuario !=null && clave != null ) {
-			 
-			 Usuario usuariodto = DAOFactory.getUsuarioDAO().Autenticar(usuario, clave);
-			 if (Objects.nonNull(usuariodto)) {
-				 // OBTENEMOS EL OBJETO QUE MANEJA LA SESSION
-				 HttpSession session = request.getSession(true);
-				 
-				 session.setAttribute("usuario", usuariodto);
-				 
-				 pw.print("<body><h1>Bienvenido/a:" + usuariodto.getEmail() + " </h1><hr>");
-				 
-			 } else {
-				 
-				// pw.print("<body><h1>Usuario no encontrado</h1><hr>");
-				 request.setAttribute("errorMensaje", "Usuario no encontrado");
-				    request.getRequestDispatcher("login.jsp").forward(request, response);
-				}
-			 
-		 }else {
-			 pw.print("<body>Complete los campos requeridos <h1></h1><hr>");
-		 }
+//		String usuario = null;
+//		String clave = null;
+//		if (Objects.nonNull(request.getParameter("usuario"))) {
+//			usuario = request.getParameter("usuario");
+//		}
+//
+//		if (Objects.nonNull(request.getParameter("clave"))) {
+//			clave = request.getParameter("clave");
+//		}
+//		 if (usuario !=null && clave != null ) {
+//			 
+//			 Usuario usuariodto = DAOFactory.getUsuarioDAO().Autenticar(usuario, clave);
+//			 if (Objects.nonNull(usuariodto)) {
+//				 // OBTENEMOS EL OBJETO QUE MANEJA LA SESSION
+//				 HttpSession session = request.getSession(true);
+//				 
+//				 session.setAttribute("usuario", usuariodto);
+//				 
+//				 pw.print("<body><h1>Bienvenido/a:" + usuariodto.getEmail() + " </h1><hr>");
+//				 
+//			 } else {
+//				 
+//				// pw.print("<body><h1>Usuario no encontrado</h1><hr>");
+//				 request.setAttribute("errorMensaje", "Usuario no encontrado");
+//				    request.getRequestDispatcher("/login.jsp").forward(request, response);
+//				}
+//			 
+//		 }else {
+//			 pw.print("<body>Complete los campos requeridos <h1></h1><hr>");
+//		 }
 
 		/*
 		 * if(request.getParameter("clave")!=null) { session.setAttribute("clave",
