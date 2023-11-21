@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Usuario usuario= DAOFactory.getUsuarioDAO().Autenticar( request.getParameter("usuario"), request.getParameter("clave"));
+		Usuario usuario= DAOFactory.getUsuarioDAO().autenticar( request.getParameter("usuario"), request.getParameter("clave"));
 		if(Objects.isNull(usuario)) {
 			request.getRequestDispatcher("loginUsuario.jsp").forward(request, response);
 			
