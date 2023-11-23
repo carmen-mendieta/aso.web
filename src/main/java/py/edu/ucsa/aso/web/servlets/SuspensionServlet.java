@@ -12,6 +12,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class SuspensionServlet
  */
+@WebServlet("/suspension-servlet")
 public class SuspensionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +28,7 @@ public class SuspensionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 request.getSession().setAttribute("SOCIOS", DAOFactory.getSocioDAO().getListadoSocios(null)); 
+		// request.getSession().setAttribute("SOCIOS", DAOFactory.getSocioDAO().getListadoSocios(null)); 
 		 request.getRequestDispatcher("suspension-socio.jsp").forward(request, response);
 	}
 
