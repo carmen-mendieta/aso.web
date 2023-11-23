@@ -53,6 +53,7 @@
             <li><a class="dropdown-item" href="/aso.web/pago-servlet">Pago de Cuotas</a></li>
             <li><a class="dropdown-item" href="#">Consultar Cuotas Pendientes</a></li>
             <li><a class="dropdown-item" href="/aso.web/socio-servlet">Registrar Socios</a></li>
+            <li><a class="dropdown-item" href="#">Suspension de Socios</a></li>
           </ul>
         </li>
       </ul>
