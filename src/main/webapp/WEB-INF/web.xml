@@ -85,6 +85,15 @@
   </filter>
   <filter-mapping>
     <filter-name>AuthFilter</filter-name>
-    <url-pattern>/AuthFilter</url-pattern>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>FrontEndAuthFilter</display-name>
+    <filter-name>FrontEndAuthFilter</filter-name>
+    <filter-class>py.edu.ucsa.aso.web.filtros.FrontEndAuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>FrontEndAuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
 </web-app>

@@ -5,8 +5,11 @@
 <meta charset="utf-8" />
 <%@include file="menu.jsp" %>
 <script type="text/javascript">
-function suspender(){
+function suspender(id){
+        var observacion= document.getElementById('observacion').value;
+        document.getElementById('observacionInput').value= observacion;
 		document.getElementById("ACCION").value = 'SUSPENDER';
+		document.getElementById("ID").value = id;
 		document.getElementById("grillaSuspensionForm").method = 'POST';
 		document.getElementById("grillaSuspensionForm").submit();
 	}
@@ -15,6 +18,7 @@ function suspender(){
 <body>
     <form id="grillaSuspensionForm" action="/aso.web/suspension-servlet" method="GET" >
     	<input type="hidden" name="ACCION" id="ACCION" value="">
+    	<input type="hidden" name="observacion" id="observacionInput" value="">
     </form>
  <div class="container">
  <div class="row mt-4 mb-3 justify-content-end">
@@ -29,9 +33,7 @@ function suspender(){
 						<option value="INACTIVOS">Inactivos</option>
 					</select>
 			</div>
-			<div class="col-auto">
-				<button type="button" onclick="cargarNuevo()" class="btn btn-primary">Nueva opción</button>
-			</div>
+			
 		</div>
  	   <table class="table" id="tabla-suspensiones">
 			   <thead class="thead-dark">
@@ -46,10 +48,45 @@ function suspender(){
 			   </thead>
 	   </table>
  </div> 
+ 
+ 	<div class="modal fade" id="suspenderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Suspension de Socios</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="parrafoTexto">¿Está seguro de querer suspender al socio?</p>
+         <textarea class="form-control" id="observacion" placeholder="Ingrese la observación"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="suspender()">Suspender</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.7/datatables.min.js"></script>
+
+<script>
+	const suspenderModal = document.getElementById('suspenderModal');
+	if (suspenderModal) {
+	  suspenderModal.addEventListener('show.bs.modal', event => {
+	    const button = event.relatedTarget;
+	    const idToSuspender = button.getAttribute('data-bs-id');
+	    const parrafoTexto = suspenderModal.querySelector('#parrafoTexto')
+	    document.getElementById("ID").value = idToSuspender; 
+	   parrafoTexto.textContent = `¿Está seguro de querer suspender al socio de ID ` + button.getAttribute('data-bs-id') + `?`
+	    const observacionInput = suspenderModal.querySelector('#observacion');
+	    
+
+	  })
+	}
+</script>
 
 <script type="text/javascript">
 	var tablaSuspensiones;
