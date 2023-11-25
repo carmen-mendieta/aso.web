@@ -5,11 +5,10 @@
 <meta charset="utf-8" />
 <%@include file="menu.jsp" %>
 <script type="text/javascript">
-function suspender(id){
+function suspender(){
         var observacion= document.getElementById('observacion').value;
-        document.getElementById('observacionInput').value= observacion;
+        document.getElementById('OBSERVACIONINPUT').value = observacion;
 		document.getElementById("ACCION").value = 'SUSPENDER';
-		document.getElementById("ID").value = id;
 		document.getElementById("grillaSuspensionForm").method = 'POST';
 		document.getElementById("grillaSuspensionForm").submit();
 	}
@@ -18,7 +17,8 @@ function suspender(id){
 <body>
     <form id="grillaSuspensionForm" action="/aso.web/suspension-servlet" method="GET" >
     	<input type="hidden" name="ACCION" id="ACCION" value="">
-    	<input type="hidden" name="observacion" id="observacionInput" value="">
+    	<input type="hidden" name="ID" id="ID" value="">
+    	<input type="hidden" name="OBSERVACIONINPUT" id="OBSERVACIONINPUT" value="">
     </form>
  <div class="container">
  <div class="row mt-4 mb-3 justify-content-end">
@@ -80,10 +80,9 @@ function suspender(id){
 	    const idToSuspender = button.getAttribute('data-bs-id');
 	    const parrafoTexto = suspenderModal.querySelector('#parrafoTexto')
 	    document.getElementById("ID").value = idToSuspender; 
-	   parrafoTexto.textContent = `¿Está seguro de querer suspender al socio de ID ` + button.getAttribute('data-bs-id') + `?`
-	    const observacionInput = suspenderModal.querySelector('#observacion');
+	   	parrafoTexto.textContent = `¿Está seguro de querer suspender al socio de ID ` + button.getAttribute('data-bs-id') + `?`
 	    
-
+	
 	  })
 	}
 </script>

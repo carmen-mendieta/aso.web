@@ -20,7 +20,7 @@ public class FrontEndAuthFilter extends HttpFilter implements Filter {
 	private HttpServletRequest httpRequest;
 	
 	 private static final String[] loginRequiredURLs = {
-	            "/opcion-servlet", "/listar-opciones", "/abm-opcion"
+	            "/opcion-servlet", "/listar-opciones", "/abm-opcion","/suspension-servlet","/suspension-socio","/menu" 
 	    };
        
     /**
@@ -52,7 +52,7 @@ public class FrontEndAuthFilter extends HttpFilter implements Filter {
         }
 		HttpSession session = httpRequest.getSession(false);
 		 
-        boolean isLoggedIn = (session != null && session.getAttribute("SOCIO_CONECTADO") != null);
+        boolean isLoggedIn = (session != null && session.getAttribute("USUARIO_CONECTADO") != null);
         System.out.println("httpRequest.getContextPath() = " + httpRequest.getContextPath());
         String loginURI = httpRequest.getContextPath() + "/login-servlet";
         boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);

@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 			request.getRequestDispatcher("loginUsuario.jsp").forward(request, response);
 			
 		}else {
-			request.getSession(true).setAttribute("SOCIO_CONECTADO", usuario);
+			request.getSession(true).setAttribute("USUARIO_CONECTADO", usuario);
 			request.getRequestDispatcher("menu.jsp").forward(request, response);
 		} 
 		

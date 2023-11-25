@@ -9,7 +9,8 @@ import net.sf.json.JSONArray;
 import py.edu.ucsa.aso.web.jdbc.dao.DAOFactory;
 import py.edu.ucsa.aso.web.jdbc.dto.Opcion;
 import py.edu.ucsa.aso.web.jdbc.dto.Socio;
-
+import py.edu.ucsa.aso.web.jdbc.dto.Usuario;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -38,8 +39,7 @@ public class SuspensionServlet extends HttpServlet {
 				  || "".equals(request.getParameter("ACCION"))){
 			 
 			  if(Objects.isNull(request.getParameter("FORMATO"))
-					  || "HTML".equals(request.getParameter("FORMATO"))){
-				request.getSession().setAttribute("SOCIOS", DAOFactory.getSocioDAO().getListadoSocios("TODOS")); 
+					  || "HTML".equals(request.getParameter("FORMATO"))){ 
 				  request.getRequestDispatcher("suspension-socio.jsp").forward(request, response);
 			  } else if("JSON".equals(request.getParameter("FORMATO"))) {
 				  response.setContentType("application/json");
@@ -61,9 +61,35 @@ public class SuspensionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// System.out.println("parametro:"+request.getParameter("ID"));
 		
-		//DAOFactory.getSocioDAO().suspenderSocio(0, obsercaion, 0)
-		doGet(request, response);
+			int idSocio = 0;
+			String observacion = "";
+			int idUsuarioConectado = 0;
+			HttpSession session = request.getSession(false);
+			
+			if("SUSPENDER".equals(request.getParameter("ACCION"))) {  
+				if (Objects.nonNull(request.getParameter("ID"))) {
+					idSocio = Integer.parseInt(request.getParameter("ID"));
+				}
+				
+				if (Objects.nonNull(request.getParameter("OBSERVACIONINPUT"))) {
+					observacion=request.getParameter("OBSERVACIONINPUT");
+				}
+				
+			    if (session != null) {
+			        Usuario usuarioConectado = (Usuario) session.getAttribute("USUARIO_CONECTADO");
+			        if (usuarioConectado != null) {
+			            idUsuarioConectado = usuarioConectado.getId();
+			            System.out.println("IdUsuario: " + idUsuarioConectado);
+			        }    
+			    }
+				
+			    DAOFactory.getSocioDAO().suspenderSocio(idSocio, observacion, idUsuarioConectado);
+			    request.getSession().setAttribute("TODOS", DAOFactory.getSocioDAO().getListadoSocios("TODOS"));
+			    request.getRequestDispatcher("suspension-socio.jsp").forward(request, response);
+		
+			}
 	}
 
 }
