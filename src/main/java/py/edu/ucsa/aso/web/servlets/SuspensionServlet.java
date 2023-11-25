@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import py.edu.ucsa.aso.web.jdbc.dao.DAOFactory;
-import py.edu.ucsa.aso.web.jdbc.dto.Opcion;
 import py.edu.ucsa.aso.web.jdbc.dto.Socio;
 import py.edu.ucsa.aso.web.jdbc.dto.Usuario;
 import jakarta.servlet.http.HttpSession;
@@ -45,11 +44,9 @@ public class SuspensionServlet extends HttpServlet {
 				response.setContentType("application/json");
 				if (Objects.isNull(request.getParameter("FILTRO"))) {
 					List<Socio> sociosSuspensiones = DAOFactory.getSocioDAO().getListadoSocios("TODOS");
-					System.out.println("maria: " + sociosSuspensiones.size());
 					response.getWriter().print(JSONArray.fromObject(sociosSuspensiones));
 				} else {
-					response.getWriter().print(JSONArray
-							.fromObject(DAOFactory.getSocioDAO().getListadoSocios(request.getParameter("FILTRO"))));
+					response.getWriter().print(JSONArray.fromObject(DAOFactory.getSocioDAO().getListadoSocios(request.getParameter("FILTRO"))));
 				}
 			}
 		}

@@ -25,7 +25,7 @@ function suspender(){
 			<div class="col-md-6">
 					<label for="filtro" class="form-label">Filtros</label> 
 					<select onchange=""
-						class="form-select" aria-label="Seleccione el dominio" id="filtro"
+						class="form-select" id="filtro"
 						name="filtro">
 						<option value="TODOS" selected>Todos</option>
 						<option value="ACTIVOS_EN_MORA">Activos en mora</option>
@@ -112,8 +112,8 @@ function suspender(){
 	   "render": function(data,type,full,meta){
         return '<button type="button" class="btn btn-danger mb-3"'
                     +' data-bs-toggle="modal" data-bs-id="' + data.id + '"'
-                    +' data-bs-target="#suspenderModal">Suspender</button>';
-    },
+                    +' data-bs-target="#suspenderModal" ' +	(data.estadoActual.descripcion === 'EXPULSADO' ? 'disabled' : '') +'>Suspender</button>';
+    	},
 	    "bSortable": false, 
 	    "bSearchable": false,
 	    "data":null

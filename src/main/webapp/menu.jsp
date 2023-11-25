@@ -58,6 +58,7 @@
         </li>
       </ul>
     </div>
+    <a class="navbar-brand" href="/aso.web/cerrar-servlet">Cerrar sesion</a>
   </div>
 </nav>
 </body>

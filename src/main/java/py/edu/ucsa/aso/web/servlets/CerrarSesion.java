@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 /**
  * Servlet implementation class CerrarSesion
  */
+@WebServlet("/cerrar-servlet")
 public class CerrarSesion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,9 +34,8 @@ public class CerrarSesion extends HttpServlet {
 		pw.print("<html><head><title>Usuario</title></head><body>");
 		if(session!=null) {
 			session.invalidate();
-			pw.print("La Sesion ha sido cerrada");
+			request.getRequestDispatcher("loginUsuario.jsp").forward(request, response);			
 		}
-		 pw.print("</body></html>");
 	}
 
 	/**
